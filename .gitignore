@@ -1,0 +1,10 @@
+# editors
+.idea
+.vscode
+*.suo
+*.sublime-project
+*.sublime-workspace
+
+# misc
+Thumbs.db
+.DS_Store

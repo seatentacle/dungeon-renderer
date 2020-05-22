@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=\"development\" TS_NODE_PROJECT=\"configs/tsconfig.webpack.json\" webpack-dev-server --open",
-    "build": "cross-env  NODE_ENV=\"production\" TS_NODE_PROJECT=\"configs/tsconfig.webpack.json\" webpack --progress"
+    "build": "cross-env  NODE_ENV=\"production\" TS_NODE_PROJECT=\"configs/tsconfig.webpack.json\" webpack --progress",
+    "lint": "eslint src --ext .ts"
   },
   "repository": {
     "type": "git",
@@ -23,12 +24,14 @@
   },
   "homepage": "https://github.com/seatentacle/dungeon-renderer#readme",
   "devDependencies": {
+    "@seatentacle/eslint-plugin": "1.2.0",
     "@types/node": "14.0.4",
     "@types/webpack": "4.41.13",
     "@types/webpack-dev-server": "3.10.1",
     "@types/webpack-merge": "4.1.5",
     "clean-webpack-plugin": "3.0.0",
     "cross-env": "7.0.2",
+    "eslint": "7.0.0",
     "html-webpack-plugin": "4.3.0",
     "source-map-loader": "0.2.4",
     "ts-loader": "7.0.4",

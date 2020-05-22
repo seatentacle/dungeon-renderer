@@ -1,0 +1,8 @@
+{
+  "plugins": [
+    "@seatentacle"
+  ],
+  "extends": [
+    "plugin:@seatentacle/typescript"
+  ]
+}

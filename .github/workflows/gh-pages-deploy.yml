@@ -19,4 +19,8 @@ jobs:
       - name: Build
         run: npm run build
       - name: Deploy
-        run: npm run deploy:gh-pages
+        run: |
+          git config --global user.email "sea.tentacle@gmail.com"
+          git config --global user.name "seatentacle"
+          git remote set-url origin https://${{ secrets.GH_PAGES }}@github.com/seatentacle/dungeon-renderer.git
+          npm run deploy:gh-pages

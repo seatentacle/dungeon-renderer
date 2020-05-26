@@ -7,6 +7,7 @@
     "start": "cross-env NODE_ENV=\"development\" TS_NODE_PROJECT=\"configs/tsconfig.webpack.json\" webpack-dev-server --open",
     "build": "cross-env  NODE_ENV=\"production\" TS_NODE_PROJECT=\"configs/tsconfig.webpack.json\" webpack --progress",
     "deploy:gh-pages": "gh-pages -d dist",
+    "test": "jest --env=jsdom",
     "lint": "eslint src --ext .ts"
   },
   "repository": {
@@ -26,6 +27,9 @@
   "homepage": "https://github.com/seatentacle/dungeon-renderer#readme",
   "devDependencies": {
     "@seatentacle/eslint-plugin": "1.2.0",
+    "@testing-library/react-hooks": "3.2.1",
+    "@types/enzyme": "3.10.5",
+    "@types/jest": "25.2.3",
     "@types/node": "14.0.4",
     "@types/react": "16.9.35",
     "@types/react-dom": "16.9.8",
@@ -35,10 +39,14 @@
     "@types/webpack-merge": "4.1.5",
     "clean-webpack-plugin": "3.0.0",
     "cross-env": "7.0.2",
+    "enzyme": "3.11.0",
+    "enzyme-adapter-react-16": "1.15.2",
     "eslint": "7.0.0",
     "gh-pages": "2.2.0",
     "html-webpack-plugin": "4.3.0",
+    "jest": "26.0.1",
     "source-map-loader": "0.2.4",
+    "ts-jest": "26.0.0",
     "ts-loader": "7.0.4",
     "ts-node": "8.10.1",
     "tsconfig-paths": "3.9.0",

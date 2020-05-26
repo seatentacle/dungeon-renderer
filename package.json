@@ -45,6 +45,7 @@
     "gh-pages": "2.2.0",
     "html-webpack-plugin": "4.3.0",
     "jest": "26.0.1",
+    "jest-styled-components": "7.0.2",
     "source-map-loader": "0.2.4",
     "ts-jest": "26.0.0",
     "ts-loader": "7.0.4",

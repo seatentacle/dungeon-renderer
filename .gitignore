@@ -18,6 +18,9 @@ logs
 # build
 dist
 
+# tests
+coverage
+
 # misc
 Thumbs.db
 .DS_Store

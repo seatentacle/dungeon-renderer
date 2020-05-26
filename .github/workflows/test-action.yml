@@ -1,8 +1,8 @@
-name: ESLint Action
+name: Jest Action
 on: [pull_request]
 jobs:
-  lint:
-    name: ESLint
+  test:
+    name: Jest
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout
@@ -13,5 +13,5 @@ jobs:
           node-version: 12
       - name: Install dependencies
         run: npm ci
-      - name: Lint
-        run: npm run lint
+      - name: Test
+        run: npm run test

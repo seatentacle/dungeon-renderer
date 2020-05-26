@@ -1,58 +1,28 @@
 import styled from 'styled-components';
 
 export const Scene = styled.div`
-  width: 200px;
-  height: 200px;
-  border: 1px solid #ccc;
-  perspective: 600px;
-`;
+  width: 25rem;
+  height: 12.5rem;
 
-export const Cube = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
+  perspective: 20rem;
+  perspective-origin: 50% 33.333%;
+
   transform-style: preserve-3d;
-  transform: translateZ(-100px);
+  overflow: hidden;
+
+  background-color: #000;
 `;
 
-const CubeFace = styled.div`
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  border: 2px solid black;
-  line-height: 200px;
-  font-size: 40px;
-  font-weight: bold;
-  color: white;
-  text-align: center;
+export const Map = styled.div`
+  width: 25rem;
+  height: 12.5rem;
+  perspective: 40rem;
+
+  transform: translate3d(0, 0, 13.75rem);
+  transform-style: preserve-3d;
 `;
 
-export const CubeFaceFront = styled(CubeFace)`
-  background: hsla(0, 100%, 50%, 0.7);
-  transform: rotateY(0deg) translateZ(100px);
-`;
-
-export const CubeFaceBack = styled(CubeFace)`
-  background: hsla(120, 100%, 50%, 0.7);
-  transform: rotateY(180deg) translateZ(100px);
-`;
-
-export const CubeFaceRight = styled(CubeFace)`
-  background: hsla(60, 100%, 50%, 0.7);
-  transform: rotateY(90deg) translateZ(100px);
-`;
-
-export const CubeFaceLeft = styled(CubeFace)`
-  background: hsla(180, 100%, 50%, 0.7);
-  transform: rotateY(-90deg) translateZ(100px);
-`;
-
-export const CubeFaceTop = styled(CubeFace)`
-  background: hsla(240, 100%, 50%, 0.7);
-  transform: rotateX(90deg) translateZ(100px);
-`;
-
-export const CubeFaceBottom = styled(CubeFace)`
-  background: hsla(300, 100%, 50%, 0.7);
-  transform: rotateX(-90deg) translateZ(100px);
+export const Camera = styled.div`
+  transform: rotateY(0deg) translateX(6.25rem);
+  transform-style: preserve-3d;
 `;

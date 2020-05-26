@@ -1,26 +1,30 @@
 import * as React from 'react';
+import CellView from './components/CellView';
 
 import {
   Scene,
-  Cube,
-  CubeFaceFront,
-  CubeFaceBack,
-  CubeFaceRight,
-  CubeFaceLeft,
-  CubeFaceTop,
-  CubeFaceBottom,
+  Map,
+  Camera,
 } from './App.styled';
+import { cellSide } from './components/CellView/CellView.types';
 
 const App = () => (
   <Scene>
-    <Cube>
-      <CubeFaceFront>front</CubeFaceFront>
-      <CubeFaceBack>back</CubeFaceBack>
-      <CubeFaceRight>right</CubeFaceRight>
-      <CubeFaceLeft>left</CubeFaceLeft>
-      <CubeFaceTop>top</CubeFaceTop>
-      <CubeFaceBottom>bottom</CubeFaceBottom>
-    </Cube>
+    <Map>
+      <Camera>
+        <CellView
+          position={{ x: 3, y: 3 }}
+          sides={[
+            cellSide.FRONT,
+            cellSide.BACK,
+            cellSide.RIGHT,
+            cellSide.LEFT,
+            cellSide.TOP,
+            cellSide.BOTTOM,
+          ]}
+        />
+      </Camera>
+    </Map>
   </Scene>
 );
 

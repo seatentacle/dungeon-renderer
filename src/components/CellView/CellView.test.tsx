@@ -1,15 +1,21 @@
 import * as React from 'react';
-import { shallow } from 'enzyme';
+import {
+  shallow,
+  ShallowWrapper,
+} from 'enzyme';
 import 'jest-styled-components';
 
-import CellView from './CellView';
+import CellView from './index';
 import {
   Cell,
   CellFace,
 } from './CellView.styled';
-import { cellSide } from './CellView.types';
+import {
+  cellSide,
+  CellViewProps,
+} from './CellView.types';
 
-const renderComponent = () => shallow(
+const renderComponent = (): ShallowWrapper<CellViewProps> => shallow(
   <CellView
     position={{
       x: 0,
@@ -47,7 +53,7 @@ describe('<CellView />', () => {
       expect(component.find(Cell).childAt(0).props().side).toBe(cellSide.FRONT);
       expect(component.find(Cell).childAt(1).props().side).toBe(cellSide.BACK);
       expect(component.find(Cell).childAt(2).props().side).toBe(cellSide.BOTTOM);
-    })
+    });
   });
 
   describe('position property', () => {
@@ -56,7 +62,7 @@ describe('<CellView />', () => {
       const position = { x: 3, y: 2 };
       const component = renderComponent();
 
-      component.setProps({ sides })
+      component.setProps({ sides });
       expect(component.find(Cell).props().x).toEqual(0);
       expect(component.find(Cell).props().y).toEqual(0);
 

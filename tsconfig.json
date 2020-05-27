@@ -11,6 +11,7 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "jsx": "react",
+    "resolveJsonModule": true,
     "paths": {
       "constants/*": ["src/constants/*"]
     }

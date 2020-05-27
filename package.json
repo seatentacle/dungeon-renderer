@@ -8,7 +8,8 @@
     "build": "cross-env  NODE_ENV=\"production\" TS_NODE_PROJECT=\"configs/tsconfig.webpack.json\" webpack --progress",
     "deploy:gh-pages": "gh-pages -d dist",
     "test": "jest --env=jsdom",
-    "lint": "eslint src --ext .ts"
+    "test:coverage": "jest --env=jsdom --coverage=true",
+    "lint": "eslint src --ext .ts,.tsx"
   },
   "repository": {
     "type": "git",

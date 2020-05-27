@@ -1,31 +1,28 @@
 import * as React from 'react';
-import CellView from './components/CellView';
+import CameraView from './components/CameraView';
+import { cells } from './lib/camera/__mocks__/map.template.json';
+import { Cell } from './lib/camera/camera.types';
 
 import {
+  GlobalStyle,
   Scene,
   Map,
-  Camera,
 } from './App.styled';
-import { cellSide } from './components/CellView/CellView.types';
 
-const App = () => (
-  <Scene>
-    <Map>
-      <Camera>
-        <CellView
+const App: React.FC = () => (
+  <>
+    <GlobalStyle />
+
+    <Scene>
+      <Map>
+        <CameraView
+          direction={ 2 }
           position={{ x: 3, y: 3 }}
-          sides={[
-            cellSide.FRONT,
-            cellSide.BACK,
-            cellSide.RIGHT,
-            cellSide.LEFT,
-            cellSide.TOP,
-            cellSide.BOTTOM,
-          ]}
+          cells={ cells as Array<Cell> }
         />
-      </Camera>
-    </Map>
-  </Scene>
+      </Map>
+    </Scene>
+  </>
 );
 
 export default App;

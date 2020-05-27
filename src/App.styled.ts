@@ -1,4 +1,22 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyle = createGlobalStyle`
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #ccc;
+  }
+`;
 
 export const Scene = styled.div`
   width: 25rem;
@@ -19,10 +37,5 @@ export const Map = styled.div`
   perspective: 40rem;
 
   transform: translate3d(0, 0, 13.75rem);
-  transform-style: preserve-3d;
-`;
-
-export const Camera = styled.div`
-  transform: rotateY(0deg) translateX(6.25rem);
   transform-style: preserve-3d;
 `;

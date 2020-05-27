@@ -6,7 +6,7 @@ import {
 import {
   cellSide,
   CellViewProps,
-} from './CellView.types'
+} from './CellView.types';
 
 const CellView: React.FC<CellViewProps> = ({
   position,

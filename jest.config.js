@@ -6,5 +6,8 @@ module.exports = {
   moduleNameMapper: {
     "^constants/(.*)$": "<rootDir>/src/constants/$1",
   },
+  collectCoverageFrom: [
+    "src/**/*.ts*"
+  ],
   testEnvironment: 'node',
 };

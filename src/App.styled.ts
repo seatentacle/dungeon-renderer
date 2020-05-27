@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -15,6 +16,10 @@ export const GlobalStyle = createGlobalStyle`
     left: 0;
     right: 0;
     background-color: #ccc;
+  }
+
+  #game {
+    margin-bottom: 20px;
   }
 `;
 

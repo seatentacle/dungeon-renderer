@@ -1,5 +1,5 @@
 import { cameraDirection } from 'constants/directions';
-import { Cell } from '../../lib/camera/camera.types';
+import { Cell } from 'lib/camera';
 
 export type CameraPosition = {
   x: number;

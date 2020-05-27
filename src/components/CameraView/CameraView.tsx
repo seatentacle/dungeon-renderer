@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { cameraDirection } from 'constants/directions';
 import { Camera } from './CameraView.styled';
-import { getCameraStand } from '../../lib/camera';
+import { getCameraStand } from 'lib/camera';
 import CellView from '../CellView';
 
 import { CellViewProps } from '../CellView/CellView.types';

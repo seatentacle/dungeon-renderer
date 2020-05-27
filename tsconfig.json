@@ -13,7 +13,9 @@
     "jsx": "react",
     "resolveJsonModule": true,
     "paths": {
-      "constants/*": ["src/constants/*"]
+      "constants/*": ["src/constants/*"],
+      "hooks/*": ["src/hooks/*"],
+      "lib/*": ["src/lib/*"]
     }
   },
   "include": [

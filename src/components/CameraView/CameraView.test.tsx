@@ -8,8 +8,8 @@ import 'jest-styled-components';
 import { cameraDirection } from 'constants/directions';
 import CameraView from './index';
 import { Camera } from './CameraView.styled';
-import { cells } from '../../lib/camera/__mocks__/map.template.json';
-import { Cell } from '../../lib/camera/camera.types';
+import { cells } from 'lib/camera/__mocks__/map.template.json';
+import { Cell } from 'lib/camera';
 import { CameraViewProps } from './CameraView.types';
 
 const renderComponent = (): ShallowWrapper<CameraViewProps> => shallow(

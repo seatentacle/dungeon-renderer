@@ -1,3 +1,5 @@
+import * as React from 'react';
+import { Keyframes } from 'styled-components';
 import { cameraDirection } from 'constants/directions';
 import { Cell } from 'lib/camera';
 
@@ -8,6 +10,8 @@ export type CameraPosition = {
 
 export type CameraProps = {
   direction: cameraDirection;
+  animation?: Keyframes;
+  onAnimationEnd?: React.EventHandler<React.AnimationEvent>;
 };
 
 export type CameraViewProps = {

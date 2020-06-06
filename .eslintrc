@@ -5,6 +5,9 @@
   "extends": [
     "plugin:@seatentacle/typescript"
   ],
+  "env": {
+    "es6": true
+  },
   "rules": {
     "react/jsx-uses-vars": 2,
     "react/jsx-uses-react": 2

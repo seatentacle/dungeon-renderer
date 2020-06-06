@@ -9,6 +9,11 @@ export type Position = {
   y: number;
 };
 
+export type Turn = {
+  from: cameraDirection;
+  to: cameraDirection;
+};
+
 export type Cell = Position & {
   sides: Array<cellSide>;
 };
@@ -19,4 +24,11 @@ export type GetCameraStand = (
   direction: cameraDirection,
   position: Position,
   cells: Array<Cell>,
-) => Array<CellViewProps>;
+) => CameraCells;
+
+
+export type GetCameraTurn = (
+  turnPosition: Turn & Position,
+  cameraStand: CameraCells,
+  cells: Array<Cell>,
+) => CameraCells;

@@ -4,6 +4,10 @@ import {
   ShallowWrapper,
 } from 'enzyme';
 import 'jest-styled-components';
+import {
+  useEffectMock,
+  useStateMock,
+} from './__mocks__/hooks';
 
 import { cameraDirection } from 'constants/directions';
 import CameraView from './index';
@@ -21,6 +25,12 @@ const renderComponent = (): ShallowWrapper<CameraViewProps> => shallow(
 
 describe('<CellView />', () => {
   describe('', () => {
+    beforeEach(() => {
+      jest.spyOn(React, 'useEffect').mockImplementation(useEffectMock);
+      // eslint-disable-next-line
+      jest.spyOn(React, 'useState').mockImplementation(useStateMock as any);
+    });
+
     it('should have the correct children count for given properties camera directions', () => {
       const component = renderComponent();
   

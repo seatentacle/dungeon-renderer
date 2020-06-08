@@ -1,6 +1,6 @@
 import {
-  renderHook,
   act,
+  renderHook,
   RenderHookResult,
 } from '@testing-library/react-hooks';
 import useKeyPress from './index';

@@ -1,4 +1,7 @@
-import { cameraDirection } from 'constants/directions';
+import {
+  cameraDirection,
+  motionDirection,
+} from 'constants/directions';
 import {
   cellSide,
   CellViewProps,
@@ -20,12 +23,18 @@ export type Cell = Position & {
 
 export type CameraCells = Array<CellViewProps>;
 
+export type GetCameraMove = (
+  position: Position,
+  directions: [motionDirection, cameraDirection],
+  cameraStand: CameraCells,
+  cells: Array<Cell>,
+) => CameraCells
+
 export type GetCameraStand = (
   direction: cameraDirection,
   position: Position,
   cells: Array<Cell>,
 ) => CameraCells;
-
 
 export type GetCameraTurn = (
   turnPosition: Turn & Position,

@@ -3,6 +3,12 @@ import { Keyframes } from 'styled-components';
 import { cameraDirection } from 'constants/directions';
 import { Cell } from 'lib/camera';
 
+export enum cameraAnimationType {
+  STAND = 'stand',
+  MOVE = 'move',
+  ROTATE = 'rotate',
+}
+
 export type CameraPosition = {
   x: number;
   y: number;

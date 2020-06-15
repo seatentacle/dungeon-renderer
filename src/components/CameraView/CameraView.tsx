@@ -1,21 +1,47 @@
 import * as React from 'react';
+import { Keyframes } from 'styled-components';
 import {
   memo,
   useEffect,
   useState,
 } from 'react';
-import { cameraDirection } from 'constants/directions';
+import {
+  cameraDirection,
+  motionDirection,
+} from 'constants/directions';
 import { Camera } from './CameraView.styled';
-import { getTurnAnimation } from './utils/styledHelpers';
+import {
+  getMovtionAnimation,
+  getRotationAnimation,
+} from './utils/styledHelpers';
 import useAnimation from 'hooks/useAnimation';
 import usePrevious from 'hooks/usePrevious';
 import {
   getCameraStand,
+  getCameraMove,
   getCameraTurn,
 } from 'lib/camera';
 import CellView from '../CellView';
+import { empty } from 'animations/camera';
 
-import { CameraViewProps } from './CameraView.types';
+import {
+  cameraAnimationType,
+  CameraPosition,
+  CameraViewProps,
+} from './CameraView.types';
+
+const getMotionDirection = (from: CameraPosition, to: CameraPosition): motionDirection => {
+  switch (true) {
+    case from.x === to.x && from.y > to.y:
+      return motionDirection.NORTH;
+    case from.x < to.x && from.y === to.y:
+      return motionDirection.EAST;
+    case from.x === to.x && from.y < to.y:
+      return motionDirection.SOUTH;
+    case from.x > to.x && from.y === to.y:
+      return motionDirection.WEST;
+  }
+};
 
 const CameraView: React.FC<CameraViewProps> = memo(({
   direction = cameraDirection.NORTH,
@@ -23,30 +49,59 @@ const CameraView: React.FC<CameraViewProps> = memo(({
   cells,
 }) => {
   const prevDirection = usePrevious(direction);
+  const prevPosition = usePrevious(position);
   const [directions, setDirections] = useState({ from: direction, to: direction });
+  const [positions, setPositions] = useState<[CameraPosition, CameraPosition]>([position, position]);
 
   const [cameraCells, setCameraCells] = useState(getCameraStand(directions.from, position, cells));
 
-  const animation = getTurnAnimation(directions.from, directions.to);
+  const [animationType, setAnimationType] = useState(cameraAnimationType.STAND);
+
+  const animation = ((): Keyframes => {
+    switch (animationType) {
+      case cameraAnimationType.ROTATE:
+        return getRotationAnimation(directions.from, directions.to);
+      case cameraAnimationType.MOVE:
+        return getMovtionAnimation(direction, getMotionDirection(...positions));
+      default:
+        return empty;
+    }
+   })();
   const [animationStatus, onAnimationEnd] = useAnimation(animation.getName());
 
   useEffect(() => {
     if (prevDirection !== direction) {
       setDirections({ from: prevDirection, to: direction });
+      setAnimationType(cameraAnimationType.ROTATE);
 
       setCameraCells(getCameraTurn(
         { from: prevDirection, to: direction, ...position },
         cameraCells,
         cells,
       ));
+    } else if (prevPosition && (prevPosition.x !== position.x || prevPosition.y !== position.y)) {
+      setPositions([prevPosition, position]);
+      setAnimationType(cameraAnimationType.MOVE);
+
+      setCameraCells(getCameraMove(
+        prevPosition,
+        [
+          getMotionDirection(prevPosition, position),
+          prevDirection,
+        ],
+        cameraCells,
+        cells,
+      ));
     }
-  }, [direction]);
+  }, [direction, position]);
 
   useEffect(() => {
     if (animationStatus === 'end') {
+      setAnimationType(cameraAnimationType.STAND);
+
       setCameraCells(getCameraStand(direction, position, cells));
     }
-  }, [animationStatus, position]);
+  }, [animationStatus]);
 
   return (
     <Camera

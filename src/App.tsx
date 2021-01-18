@@ -4,19 +4,16 @@ import {
   useState,
 } from 'react';
 import CameraView from './components/CameraView';
-import { CameraPosition } from './components/CameraView/CameraView.types';
 import useKeyPress from './hooks/useKeyPress';
-import { cameraDirection } from 'constants/directions';
+import {
+  direction,
+  motion,
+} from 'constants/directions';
 import { keyboardKeys } from 'constants/keyboardKeys';
 import { cells } from 'lib/camera/__mocks__/map.template.json';
 import { Cell } from 'lib/camera';
-
-import {
-  moveForward,
-  moveBackward,
-  moveLeft,
-  moveRight,
-} from './App.utils';
+import PlayerProvider from './components/PlayerProvider';
+import usePlayer from './components/PlayerProvider/usePlayer';
 
 import {
   GlobalStyle,
@@ -24,9 +21,16 @@ import {
   Map,
 } from './App.styled';
 
-const App: React.FC = () => {
-  const [direction, setDirection] = useState<cameraDirection>(cameraDirection.WEST);
-  const [position, setPosition] = useState<CameraPosition>({ x: 1, y: 1 });
+const MapView = () => {
+  const {
+    direction: viewDirection,
+    setDirection,
+    playerTurnRight,
+    playerTurnLeft,
+    position,
+    setPosition,
+    playerMove,
+  } = usePlayer();
   const turnLeftPressed = useKeyPress(keyboardKeys.TURN_LEFT);
   const turnRightPressed = useKeyPress(keyboardKeys.TURN_RIGHT);
   const moveForwardPressed = useKeyPress(keyboardKeys.MOVE_FORWARD);
@@ -35,32 +39,33 @@ const App: React.FC = () => {
   const moveLeftPressed = useKeyPress(keyboardKeys.MOVE_LEFT);
 
   useEffect(() => {
+    setDirection(direction.WEST);
+    setPosition({ x: 1, y: 1 });
+  }, [])
+
+  useEffect(() => {
     if (turnLeftPressed) {
-      const newDirection = (direction - 1) < 0 ? 3: direction - 1;
-      if (newDirection !== direction)
-        setDirection(newDirection);
+      playerTurnLeft();
     }
 
     if (turnRightPressed) {
-      const newDirection = (direction + 1) > 3 ? 0: direction + 1;
-      if (newDirection !== direction)
-        setDirection(newDirection);
+      playerTurnRight();
     }
 
     if (moveForwardPressed) {
-      setPosition(moveForward(direction, position));
+      playerMove(motion.FORWARD);
     }
 
     if (moveBackwardPressed) {
-      setPosition(moveBackward(direction, position));
+      playerMove(motion.BACKWARD);
     }
 
     if (moveRightPressed) {
-      setPosition(moveRight(direction, position));
+      playerMove(motion.RIGHT);
     }
 
     if (moveLeftPressed) {
-      setPosition(moveLeft(direction, position));
+      playerMove(motion.LEFT);
     }
   }, [
     turnLeftPressed,
@@ -71,18 +76,30 @@ const App: React.FC = () => {
     moveLeftPressed,
   ]);
 
+  return typeof viewDirection !== 'undefined' && typeof position !== 'undefined'
+    ? (
+      <Map>
+        <CameraView
+          direction={ viewDirection }
+          position={ position }
+          cells={ cells as Array<Cell> }
+        />
+      </Map>
+    )
+    : <></>;
+}
+
+const App: React.FC = () => {
+  
+
   return (
     <>
       <GlobalStyle />
 
       <Scene>
-        <Map>
-          <CameraView
-            direction={ direction }
-            position={ position }
-            cells={ cells as Array<Cell> }
-          />
-        </Map>
+        <PlayerProvider>
+          <MapView />
+        </PlayerProvider>
       </Scene>
     </>
   );

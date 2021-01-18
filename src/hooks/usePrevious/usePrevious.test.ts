@@ -2,7 +2,7 @@ import {
   renderHook,
   RenderHookResult,
 } from '@testing-library/react-hooks';
-import usePrevious from './usePrevious';
+import usePrevious from './index';
 
 function testHook <T>(initialProps: T): RenderHookResult<T, {}> {
   return renderHook(value => usePrevious(value), { initialProps });

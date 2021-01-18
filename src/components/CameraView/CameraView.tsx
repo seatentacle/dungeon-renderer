@@ -16,6 +16,7 @@ import {
 } from './utils/styledHelpers';
 import useAnimation from 'hooks/useAnimation';
 import usePrevious from 'hooks/usePrevious';
+import usePlayer from '../PlayerProvider/usePlayer';
 import {
   getCameraStand,
   getCameraMove,
@@ -53,6 +54,7 @@ const CameraView: React.FC<CameraViewProps> = memo(({
   const [directions, setDirections] = useState({ from: direction, to: direction });
   const [positions, setPositions] = useState<[CameraPosition, CameraPosition]>([position, position]);
 
+  const { setIdle } = usePlayer();
   const [cameraCells, setCameraCells] = useState(getCameraStand(directions.from, position, cells));
 
   const [animationType, setAnimationType] = useState(cameraAnimationType.STAND);
@@ -98,6 +100,7 @@ const CameraView: React.FC<CameraViewProps> = memo(({
   useEffect(() => {
     if (animationStatus === 'end') {
       setAnimationType(cameraAnimationType.STAND);
+      setIdle(true);
 
       setCameraCells(getCameraStand(direction, position, cells));
     }

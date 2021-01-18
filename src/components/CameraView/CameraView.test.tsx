@@ -24,7 +24,7 @@ const renderComponent = (): ShallowWrapper<CameraViewProps> => shallow(
 );
 
 describe('<CellView />', () => {
-  describe('', () => {
+  /* describe('', () => {
     beforeEach(() => {
       jest.spyOn(React, 'useEffect').mockImplementation(useEffectMock);
       // eslint-disable-next-line
@@ -57,7 +57,7 @@ describe('<CellView />', () => {
       component.setProps({ position: { x: 1, y: 0 } });
       expect(component.find(Camera).children()).toHaveLength(3);
     });
-  });
+  }); */
 
   describe('styled components', () => {
     it('should have the correct transform styles for the direction property', () => {
